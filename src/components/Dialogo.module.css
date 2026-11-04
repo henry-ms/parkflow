@@ -1,0 +1,90 @@
+.dialogo {
+  width: calc(100% - 2 * var(--sp-4));
+  max-height: calc(100dvh - 2 * var(--sp-4));
+  padding: 0;
+  border: 1px solid var(--c-linha);
+  border-radius: var(--r-painel);
+  background: var(--c-superficie);
+  color: var(--c-tinta);
+  box-shadow: var(--sombra-camada);
+}
+
+.dialogo[open] {
+  display: flex;
+  flex-direction: column;
+  animation: surgir var(--duracao) ease-out;
+}
+
+.dialogo::backdrop {
+  background: rgb(31 36 41 / 0.55);
+}
+
+.sm {
+  max-width: 28rem;
+}
+
+.md {
+  max-width: 36rem;
+}
+
+.lg {
+  max-width: 48rem;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-5) var(--sp-6) var(--sp-2);
+}
+
+.fechar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--alvo-toque);
+  height: var(--alvo-toque);
+  margin: calc(-1 * var(--sp-2)) calc(-1 * var(--sp-3)) 0 0;
+  border: 0;
+  border-radius: var(--r-controle);
+  background: transparent;
+  color: var(--c-tinta-2);
+  cursor: pointer;
+}
+
+.fechar:hover:not(:disabled) {
+  background: var(--c-superficie-2);
+}
+
+.descricao {
+  padding: 0 var(--sp-6);
+  color: var(--c-tinta-2);
+}
+
+.corpo {
+  padding: var(--sp-4) var(--sp-6);
+  overflow-y: auto;
+}
+
+.rodape {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-6) var(--sp-5);
+  border-top: 1px solid var(--c-linha);
+}
+
+@media (max-width: 30rem) {
+  .rodape > * {
+    flex: 1 1 100%;
+  }
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

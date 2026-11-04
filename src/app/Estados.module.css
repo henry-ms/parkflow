@@ -1,0 +1,15 @@
+.centro {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: var(--sp-3);
+  min-height: 60dvh;
+  padding: var(--sp-6) var(--sp-4);
+  text-align: center;
+  color: var(--c-tinta-2);
+}
+
+.centro > div {
+  max-width: 32rem;
+  text-align: left;
+}

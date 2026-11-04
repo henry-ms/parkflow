@@ -1,0 +1,21 @@
+.statusCaixa {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.pontoAberto,
+.pontoFechado {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  flex: none;
+}
+
+.pontoAberto {
+  background: #5fcf8e;
+}
+
+.pontoFechado {
+  background: var(--c-tinta-invertida-2);
+}

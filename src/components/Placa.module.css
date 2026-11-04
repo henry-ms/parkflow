@@ -1,0 +1,101 @@
+.placa {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  background: var(--c-superficie);
+  border: 0.09em solid var(--c-asfalto);
+  border-radius: var(--r-placa);
+  font-family: var(--f-placa);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--c-asfalto);
+  vertical-align: middle;
+}
+
+/* Medidas em `em` da própria faixa (fonte = 22% da placa): altura ≈ 0,39 da placa. */
+.faixa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.75em;
+  background: var(--c-acao);
+  color: var(--c-tinta-invertida);
+  font-family: var(--f-texto);
+  font-weight: 600;
+  font-size: 0.22em;
+  line-height: 1;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+}
+
+.caracteres {
+  padding: 0.08em 0.28em 0.06em;
+  letter-spacing: 0.06em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* A palavra BRASIL só é legível a partir do tamanho médio; na tabela fica só a tarja azul. */
+.sm {
+  font-size: 1.0625rem;
+}
+
+.sm .faixa {
+  height: 1.2em;
+  color: transparent;
+}
+
+.md {
+  font-size: 1.75rem;
+}
+
+.lg {
+  font-size: 3rem;
+}
+
+.editavel {
+  display: flex;
+  width: 100%;
+  max-width: 20rem;
+  border-width: 3px;
+  transition: border-color var(--duracao);
+}
+
+.editavel:focus-within {
+  outline: 3px solid var(--c-faixa);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--c-asfalto);
+}
+
+.invalida {
+  border-color: var(--c-problema);
+}
+
+.entrada {
+  width: 100%;
+  min-width: 0;
+  padding: 0.06em 0.2em 0.04em;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.entrada:focus,
+.entrada:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.entrada::placeholder {
+  color: var(--c-linha);
+}
+
+@media (max-width: 30rem) {
+  .lg {
+    font-size: 2.5rem;
+  }
+}

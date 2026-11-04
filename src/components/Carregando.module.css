@@ -1,0 +1,31 @@
+.carregando {
+  display: inline-block;
+  flex: none;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: girar 700ms linear infinite;
+}
+
+.esqueleto {
+  display: block;
+  border-radius: var(--r-controle);
+  background: linear-gradient(90deg, var(--c-neutro-fundo) 0%, var(--c-superficie-2) 50%, var(--c-neutro-fundo) 100%);
+  background-size: 200% 100%;
+  animation: brilho 1.4s ease-in-out infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes brilho {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}

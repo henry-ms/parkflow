@@ -1,0 +1,70 @@
+.cabecalho {
+  display: grid;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
+}
+
+.voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  justify-self: start;
+  min-height: 2.25rem;
+  margin-left: calc(-1 * var(--sp-2));
+  padding: 0 var(--sp-2);
+  border-radius: var(--r-controle);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  text-decoration: none;
+}
+
+.voltar:hover {
+  background: var(--c-acao-tinta);
+}
+
+.linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+
+.textos {
+  display: grid;
+  gap: var(--sp-1);
+  min-width: 0;
+}
+
+.descricao {
+  color: var(--c-tinta-2);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.painel {
+  min-width: 0;
+  padding: var(--sp-5) var(--sp-6);
+  border: 1px solid var(--c-linha);
+  border-radius: var(--r-painel);
+  background: var(--c-superficie);
+}
+
+.destaque {
+  border: 2px solid var(--c-acao);
+}
+
+.tituloPainel {
+  margin-bottom: var(--sp-4);
+}
+
+@media (max-width: 36rem) {
+  .painel {
+    padding: var(--sp-4);
+  }
+}

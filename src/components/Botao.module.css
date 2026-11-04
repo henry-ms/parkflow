@@ -1,0 +1,95 @@
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: var(--alvo-toque);
+  padding: 0 var(--sp-4);
+  border: 1px solid transparent;
+  border-radius: var(--r-controle);
+  font-weight: 600;
+  font-size: var(--fs-md);
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--duracao), border-color var(--duracao), color var(--duracao);
+}
+
+.botao:disabled {
+  cursor: not-allowed;
+}
+
+.botao[aria-busy='true'] {
+  cursor: progress;
+}
+
+.sm {
+  min-height: 2.25rem;
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-sm);
+}
+
+.lg {
+  min-height: 3.25rem;
+  padding: 0 var(--sp-6);
+  font-size: var(--fs-lg);
+}
+
+.larguraTotal {
+  width: 100%;
+}
+
+.primario {
+  background: var(--c-acao);
+  color: var(--c-tinta-invertida);
+}
+
+.primario:hover:not(:disabled) {
+  background: var(--c-acao-hover);
+}
+
+.primario:disabled:not([aria-busy='true']) {
+  background: var(--c-linha);
+  color: var(--c-tinta-3);
+}
+
+.primario[aria-busy='true'] {
+  background: var(--c-acao-hover);
+}
+
+.secundario {
+  background: var(--c-superficie);
+  color: var(--c-tinta);
+  border-color: var(--c-linha-forte);
+}
+
+.secundario:hover:not(:disabled) {
+  background: var(--c-superficie-2);
+  border-color: var(--c-tinta-2);
+}
+
+.secundario:disabled {
+  color: var(--c-tinta-3);
+  border-color: var(--c-linha);
+}
+
+.discreto {
+  background: transparent;
+  color: var(--c-acao);
+  padding-inline: var(--sp-2);
+}
+
+.discreto:hover:not(:disabled) {
+  background: var(--c-acao-tinta);
+}
+
+.perigo {
+  background: var(--c-superficie);
+  color: var(--c-problema-texto);
+  border-color: var(--c-problema);
+}
+
+.perigo:hover:not(:disabled) {
+  background: var(--c-problema-fundo);
+}

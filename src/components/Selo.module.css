@@ -1,0 +1,34 @@
+.selo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 0.125rem var(--sp-2);
+  border: 1px solid;
+  border-radius: var(--r-controle);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.selo svg {
+  flex: none;
+}
+
+.regular {
+  background: var(--c-regular-fundo);
+  border-color: var(--c-regular-borda);
+  color: var(--c-regular);
+}
+
+.problema {
+  background: var(--c-problema-fundo);
+  border-color: var(--c-problema-borda);
+  color: var(--c-problema-texto);
+}
+
+.neutro {
+  background: var(--c-neutro-fundo);
+  border-color: var(--c-neutro-borda);
+  color: var(--c-neutro);
+}
