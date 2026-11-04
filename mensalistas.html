@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mensalistas | ParkFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&family=Barlow+Semi+Condensed:wght@600&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body data-perfil="gerente">
+  <header class="barra">
+    <div class="barra-interno">
+      <a class="marca" href="mensalistas.html"><span class="marca-icone" aria-hidden="true">P</span>ParkFlow</a>
+      <nav class="menu" aria-label="Principal">
+        <a href="mensalistas.html" aria-current="page">Mensalistas</a>
+      </nav>
+      <div class="usuario">
+        <button type="button" class="usuario-botao" aria-expanded="false" aria-controls="menu-usuario">
+          <span class="avatar" aria-hidden="true">ML</span>
+          <span class="usuario-texto"><span class="usuario-nome">Márcia Lopes</span><span class="usuario-perfil">Gerente</span></span>
+        </button>
+        <div class="usuario-menu" id="menu-usuario" hidden>
+          <a href="index.html">Sair do ParkFlow</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <div class="cabecalho">
+      <div>
+        <h1>Mensalistas</h1>
+        <p id="resumo"></p>
+      </div>
+      <button type="button" class="botao botao-primario" id="botao-novo">+ Novo contrato</button>
+    </div>
+
+    <div id="aviso-salvo" style="margin-bottom: 1rem"></div>
+
+    <section class="painel">
+      <div class="ferramentas">
+        <div class="campo">
+          <label for="filtro-texto" class="oculto">Buscar por nome, placa ou vaga</label>
+          <input id="filtro-texto" type="search" placeholder="Buscar por nome, placa ou vaga">
+        </div>
+        <fieldset class="filtros">
+          <legend class="oculto">Filtrar por situação</legend>
+          <label><input type="radio" name="situacao" value="todos" checked> Todos</label>
+          <label><input type="radio" name="situacao" value="em-dia"> Em dia</label>
+          <label><input type="radio" name="situacao" value="vencida"> Vencidas</label>
+        </fieldset>
+      </div>
+
+      <div class="rolagem" role="region" aria-label="Contratos de mensalistas" tabindex="0">
+        <table class="tabela" style="min-width: 44rem">
+          <thead>
+            <tr>
+              <th><button type="button" class="ordenar" data-coluna="nome">Mensalista ↕</button></th>
+              <th>Placa</th>
+              <th><button type="button" class="ordenar" data-coluna="vaga">Vaga ↕</button></th>
+              <th class="numero"><button type="button" class="ordenar" data-coluna="mensalidade">Mensalidade ↕</button></th>
+              <th><button type="button" class="ordenar" data-coluna="vencimento">Vencimento ↕</button></th>
+              <th>Situação</th>
+            </tr>
+          </thead>
+          <tbody id="contratos"></tbody>
+        </table>
+      </div>
+      <p id="vazio" class="dica" hidden style="padding: 1.5rem 0">Nenhum mensalista encontrado. Confira o nome ou a placa, ou limpe a busca.</p>
+
+      <details style="margin-top: 1.25rem; font-size: 0.875rem">
+        <summary><b>O que significa cada situação</b></summary>
+        <p style="margin-top: 0.5rem"><span class="selo selo-regular">Em dia</span> Mensalidades pagas até o último vencimento.</p>
+        <p style="margin-top: 0.5rem"><span class="selo selo-problema">Vencida</span> O vencimento passou e o pagamento não foi identificado.</p>
+      </details>
+    </section>
+  </main>
+
+  <!-- Novo contrato: preencher e depois conferir -->
+  <dialog id="dialogo-contrato" class="dialogo-largo">
+    <form id="form-contrato" novalidate>
+      <h2>Novo contrato</h2>
+      <p class="dica" style="margin-bottom: 1rem">Todos os campos são obrigatórios.</p>
+      <div class="grade-campos">
+        <div class="campo campo-largo">
+          <label for="c-nome">Nome completo</label>
+          <input id="c-nome" autocomplete="off">
+        </div>
+        <div class="campo">
+          <label for="c-cpf">CPF</label>
+          <input id="c-cpf" inputmode="numeric" placeholder="000.000.000-00">
+        </div>
+        <div class="campo">
+          <label for="c-placa">Placa</label>
+          <input id="c-placa" maxlength="8" placeholder="ABC1D23" style="text-transform: uppercase">
+        </div>
+        <div class="campo">
+          <label for="c-vaga">Vaga fixa</label>
+          <select id="c-vaga"></select>
+        </div>
+        <div class="campo">
+          <label for="c-dia">Dia de vencimento</label>
+          <select id="c-dia">
+            <option value="5">Todo dia 5</option>
+            <option value="10" selected>Todo dia 10</option>
+            <option value="15">Todo dia 15</option>
+            <option value="20">Todo dia 20</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="c-valor">Mensalidade (R$)</label>
+          <input id="c-valor" inputmode="decimal" value="280">
+        </div>
+      </div>
+      <div class="acoes">
+        <button type="button" class="botao" id="c-cancelar">Cancelar</button>
+        <button type="submit" class="botao botao-primario">Revisar contrato</button>
+      </div>
+    </form>
+
+    <section id="conferir-contrato" hidden>
+      <h2>Confira o contrato</h2>
+      <p>Revise os dados antes de salvar.</p>
+      <dl class="dados" id="c-resumo"></dl>
+      <div class="acoes">
+        <button type="button" class="botao" id="c-editar">Voltar e editar</button>
+        <button type="button" class="botao botao-primario" id="c-salvar">Salvar contrato</button>
+      </div>
+    </section>
+  </dialog>
+
+  <script src="js/dados.js"></script>
+  <script src="js/regras.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/mensalistas.js"></script>
+</body>
+</html>

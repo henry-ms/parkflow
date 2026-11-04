@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar saída | ParkFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&family=Barlow+Semi+Condensed:wght@600&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body data-perfil="operador">
+  <header class="barra">
+    <div class="barra-interno">
+      <a class="marca" href="inicio.html"><span class="marca-icone" aria-hidden="true">P</span>ParkFlow</a>
+      <nav class="menu" aria-label="Principal">
+        <a href="inicio.html">Início</a>
+        <a href="entrada.html">Entrada <kbd>F2</kbd></a>
+        <a href="saida.html" aria-current="page">Saída <kbd>F4</kbd></a>
+      </nav>
+      <span class="status-caixa"><span class="ponto-verde" aria-hidden="true"></span>Caixa aberto desde 06:00</span>
+      <div class="usuario">
+        <button type="button" class="usuario-botao" aria-expanded="false" aria-controls="menu-usuario">
+          <span class="avatar" aria-hidden="true">RA</span>
+          <span class="usuario-texto"><span class="usuario-nome">Rafael Antunes</span><span class="usuario-perfil">Operador de caixa</span></span>
+        </button>
+        <div class="usuario-menu" id="menu-usuario" hidden>
+          <p>Atalhos: <kbd>F2</kbd> entrada, <kbd>F4</kbd> saída</p>
+          <a href="index.html">Sair do ParkFlow</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <a href="inicio.html" class="voltar">Voltar para o início</a>
+    <div class="cabecalho"><h1>Registrar saída</h1></div>
+
+    <!-- Etapa 1: localizar o veículo -->
+    <section id="etapa-busca">
+      <form id="form-busca" class="busca" role="search" novalidate>
+        <div class="campo">
+          <label for="busca">Placa ou nº do ticket</label>
+          <p class="dica">O leitor de código de barras do ticket também preenche este campo.</p>
+          <input id="busca" type="search" autocomplete="off" placeholder="ABC1D23 ou 0428" autofocus>
+        </div>
+        <button type="submit" class="botao botao-primario">Buscar</button>
+      </form>
+      <div id="aviso-busca" style="max-width: 48rem; margin-bottom: 1.25rem"></div>
+
+      <section class="painel">
+        <h2>Veículos no pátio</h2>
+        <p class="dica" id="contagem" aria-live="polite" style="margin-bottom: 0.75rem"></p>
+        <ul class="lista-patio" id="lista-patio"></ul>
+      </section>
+    </section>
+
+    <!-- Etapa 2: cobrança -->
+    <section id="etapa-cobranca" hidden>
+      <button type="button" class="botao botao-discreto botao-pequeno" id="voltar-busca" style="margin-bottom: 1rem">‹ Voltar para a busca</button>
+      <div class="duas-colunas">
+        <section class="painel empilhado">
+          <h2>Dados da estadia</h2>
+          <div class="acoes" id="estadia-placa"></div>
+          <dl class="dados dados-2" id="estadia-dados"></dl>
+
+          <div class="calculo" id="calculo">
+            <h3>Como o valor foi calculado</h3>
+            <p class="dica" id="regra-tarifa"></p>
+            <table>
+              <tbody id="calculo-linhas"></tbody>
+              <tfoot><tr><th>Total</th><td id="calculo-total"></td></tr></tfoot>
+            </table>
+          </div>
+
+          <label class="marcar" id="caixa-perdido">
+            <input type="checkbox" id="ticket-perdido">
+            <span>Cliente perdeu o ticket <span class="apagado">(acrescenta R$ 20,00)</span></span>
+          </label>
+        </section>
+
+        <!-- Painel lateral: pagamento -->
+        <aside class="painel painel-destaque lateral empilhado" aria-labelledby="titulo-pagamento">
+          <h2 class="titulo-vaga" id="titulo-pagamento">Total a pagar</h2>
+          <div id="pagamento" class="empilhado"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Etapa 3: concluída -->
+    <section id="etapa-concluida" class="painel painel-destaque empilhado" hidden style="max-width: 44rem">
+      <div role="status">
+        <h2 class="ok" id="concluida-titulo">Pagamento confirmado</h2>
+        <p id="concluida-vaga"></p>
+      </div>
+      <div id="concluida-placa"></div>
+      <div id="concluida-troco"></div>
+      <dl class="dados dados-2" id="concluida-dados"></dl>
+      <div class="acoes">
+        <button type="button" class="botao botao-primario botao-grande" id="nova-saida">Registrar nova saída</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Conferência antes de confirmar -->
+  <dialog id="dialogo-conferir">
+    <h2>Confira antes de confirmar</h2>
+    <p id="conferir-texto"></p>
+    <dl class="dados" id="conferir-dados"></dl>
+    <div class="acoes">
+      <button type="button" class="botao" id="corrigir">Voltar e corrigir</button>
+      <button type="button" class="botao botao-primario" id="confirmar">Confirmar</button>
+    </div>
+  </dialog>
+
+  <script src="js/dados.js"></script>
+  <script src="js/regras.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/saida.js"></script>
+</body>
+</html>

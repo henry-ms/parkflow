@@ -1,16 +1,71 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1F2429" />
-    <meta name="description" content="ParkFlow — gestão de estacionamento: entrada, saída, mensalistas e faturas." />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>ParkFlow</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <noscript>O ParkFlow precisa de JavaScript habilitado para funcionar.</noscript>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar | ParkFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&family=Barlow+Semi+Condensed:wght@600&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="pagina-login">
+  <main class="cartao-login">
+    <span class="marca"><span class="marca-icone" aria-hidden="true">P</span>ParkFlow</span>
+
+    <!-- Login -->
+    <section id="tela-login" class="empilhado">
+      <div>
+        <h1>Entrar no ParkFlow</h1>
+        <p class="dica">Use o acesso que o estacionamento forneceu. O sistema abre direto nas telas do seu perfil.</p>
+      </div>
+
+      <div id="aviso-login"></div>
+
+      <form id="form-login" novalidate>
+        <div class="campo">
+          <label for="usuario">CPF, e-mail ou usuário</label>
+          <input id="usuario" autocomplete="username" autocapitalize="none">
+        </div>
+        <div class="campo">
+          <label for="senha">Senha</label>
+          <div class="senha">
+            <input id="senha" type="password" autocomplete="current-password">
+            <button type="button" id="mostrar-senha" aria-pressed="false">Mostrar</button>
+          </div>
+        </div>
+        <button type="submit" id="botao-entrar" class="botao botao-primario botao-grande botao-largo">Entrar</button>
+      </form>
+
+      <a href="#" id="link-esqueci">Esqueci minha senha</a>
+
+      <details class="demo">
+        <summary>Acessos de demonstração</summary>
+        <p>Operador: <b>operador01</b><br>Gerente: <b>gerente01</b><br>Mensalista: <b>123.456.789-09</b><br>Senha de todos: <b>parkflow</b></p>
+      </details>
+    </section>
+
+    <!-- Recuperar senha -->
+    <section id="tela-recuperar" class="empilhado" hidden>
+      <a href="#" id="voltar-login" class="voltar">Voltar para o login</a>
+      <div>
+        <h1>Recuperar senha</h1>
+        <p class="dica">Enviamos um link para criar uma nova senha no e-mail cadastrado.</p>
+      </div>
+      <form id="form-recuperar" novalidate>
+        <div class="campo">
+          <label for="recuperar-usuario">CPF, e-mail ou usuário</label>
+          <input id="recuperar-usuario" autocomplete="username">
+        </div>
+        <button type="submit" id="botao-recuperar" class="botao botao-primario botao-grande botao-largo">Enviar instruções</button>
+      </form>
+      <div id="aviso-recuperar"></div>
+    </section>
+  </main>
+
+  <script src="js/dados.js"></script>
+  <script src="js/regras.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/login.js"></script>
+</body>
 </html>

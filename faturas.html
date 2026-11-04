@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minhas faturas | ParkFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&family=Barlow+Semi+Condensed:wght@600&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body data-perfil="mensalista">
+  <header class="barra">
+    <div class="barra-interno">
+      <a class="marca" href="faturas.html"><span class="marca-icone" aria-hidden="true">P</span>ParkFlow</a>
+      <nav class="menu" aria-label="Principal">
+        <a href="faturas.html" aria-current="page">Minhas faturas</a>
+      </nav>
+      <div class="usuario">
+        <button type="button" class="usuario-botao" aria-expanded="false" aria-controls="menu-usuario">
+          <span class="avatar" aria-hidden="true">AS</span>
+          <span class="usuario-texto"><span class="usuario-nome">Ana Souza</span><span class="usuario-perfil">Mensalista</span></span>
+        </button>
+        <div class="usuario-menu" id="menu-usuario" hidden>
+          <a href="index.html">Sair do ParkFlow</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <div class="cabecalho">
+      <div>
+        <h1>Minhas faturas</h1>
+        <p>Olá, Ana. Aqui ficam as mensalidades do seu contrato.</p>
+      </div>
+    </div>
+
+    <div class="duas-colunas">
+      <div class="empilhado">
+        <section class="painel" aria-label="Seu contrato">
+          <dl class="dados dados-2" id="contrato"></dl>
+        </section>
+
+        <!-- Fatura em aberto: a que pede ação fica no topo -->
+        <section class="painel painel-destaque fatura-aberta" aria-labelledby="titulo-aberta">
+          <div class="acoes">
+            <h2 id="titulo-aberta"></h2>
+            <span id="selo-aberta"></span>
+          </div>
+          <div>
+            <p class="dica"><b>Valor cobrado</b></p>
+            <p class="valor-grande" id="valor-aberta"></p>
+            <p id="prazo-aberta"></p>
+          </div>
+          <p class="dica">Pague até o vencimento pelo aplicativo do seu banco, com o código do boleto. Por Pix, o pagamento aparece aqui em poucos minutos.</p>
+          <button type="button" class="botao botao-primario botao-grande" id="botao-2via">Gerar 2ª via do boleto</button>
+          <div id="segunda-via" class="faixa-status empilhado" hidden style="width: 100%; justify-items: start">
+            <p class="ok">2ª via pronta.</p>
+            <p class="dica">Código do boleto</p>
+            <p class="codigo-boleto" id="codigo"></p>
+            <button type="button" class="botao botao-primario" id="botao-copiar">Copiar código</button>
+          </div>
+        </section>
+
+        <section class="painel">
+          <h2>Faturas pagas</h2>
+          <ul class="lista-pagas" id="pagas"></ul>
+        </section>
+      </div>
+
+      <aside class="ajuda" aria-labelledby="titulo-ajuda">
+        <h2 id="titulo-ajuda" style="font-size: 1rem">Dúvidas sobre sua fatura?</h2>
+        <p id="contato"></p>
+        <details>
+          <summary>Paguei e a fatura continua em aberto</summary>
+          <p>Pagamentos por Pix aparecem em poucos minutos. Por boleto, podem levar até 3 dias úteis. Se passar disso, fale com o atendimento com o comprovante em mãos.</p>
+        </details>
+        <details>
+          <summary>Perdi o boleto</summary>
+          <p>Use "Gerar 2ª via do boleto" na fatura em aberto e pague no aplicativo do seu banco.</p>
+        </details>
+        <details>
+          <summary>Quero trocar o veículo do contrato</summary>
+          <p>A troca de placa é feita pela gerência do estacionamento. Leve o documento do novo veículo.</p>
+        </details>
+      </aside>
+    </div>
+  </main>
+
+  <dialog id="dialogo-recibo">
+    <h2>Recibo de pagamento</h2>
+    <dl class="dados" id="recibo-dados"></dl>
+    <div class="acoes">
+      <button type="button" class="botao botao-primario" id="fechar-recibo">Fechar</button>
+    </div>
+  </dialog>
+
+  <script src="js/dados.js"></script>
+  <script src="js/regras.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/faturas.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar entrada | ParkFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&family=Barlow+Semi+Condensed:wght@600&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body data-perfil="operador">
+  <header class="barra">
+    <div class="barra-interno">
+      <a class="marca" href="inicio.html"><span class="marca-icone" aria-hidden="true">P</span>ParkFlow</a>
+      <nav class="menu" aria-label="Principal">
+        <a href="inicio.html">Início</a>
+        <a href="entrada.html" aria-current="page">Entrada <kbd>F2</kbd></a>
+        <a href="saida.html">Saída <kbd>F4</kbd></a>
+      </nav>
+      <span class="status-caixa"><span class="ponto-verde" aria-hidden="true"></span>Caixa aberto desde 06:00</span>
+      <div class="usuario">
+        <button type="button" class="usuario-botao" aria-expanded="false" aria-controls="menu-usuario">
+          <span class="avatar" aria-hidden="true">RA</span>
+          <span class="usuario-texto"><span class="usuario-nome">Rafael Antunes</span><span class="usuario-perfil">Operador de caixa</span></span>
+        </button>
+        <div class="usuario-menu" id="menu-usuario" hidden>
+          <p>Atalhos: <kbd>F2</kbd> entrada, <kbd>F4</kbd> saída</p>
+          <a href="index.html">Sair do ParkFlow</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <a href="inicio.html" class="voltar">Voltar para o início</a>
+    <div class="cabecalho"><h1>Registrar entrada</h1></div>
+
+    <!-- Formulário -->
+    <form id="form-entrada" class="duas-colunas" novalidate>
+      <div class="empilhado">
+        <section class="painel empilhado">
+          <h2>Dados do veículo</h2>
+
+          <div class="campo">
+            <label for="placa">Placa</label>
+            <p class="dica">Mercosul (ABC1D23) ou modelo antigo (ABC-1234).</p>
+            <span class="placa placa-campo">
+              <span class="placa-faixa" aria-hidden="true">BRASIL</span>
+              <input id="placa" maxlength="8" autocomplete="off" spellcheck="false" placeholder="ABC1D23" autofocus>
+            </span>
+          </div>
+
+          <div id="aviso-duplicada"></div>
+
+          <div class="grade-campos">
+            <div class="campo">
+              <label for="tipo">Tipo de veículo</label>
+              <select id="tipo">
+                <option value="carro">Carro</option>
+                <option value="moto">Moto</option>
+                <option value="utilitario">Utilitário (SUV, picape, van)</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="setor">Setor</label>
+              <select id="setor"></select>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="modelo">Modelo e cor <span class="opcional">(opcional)</span></label>
+            <input id="modelo" maxlength="40" placeholder="Ex.: Gol prata">
+          </div>
+        </section>
+
+        <div class="acoes" style="justify-content: flex-end">
+          <a href="inicio.html" class="botao">Cancelar</a>
+          <button type="submit" id="botao-confirmar" class="botao botao-primario botao-grande">Confirmar e emitir ticket</button>
+        </div>
+      </div>
+
+      <!-- Painel lateral: vaga sugerida -->
+      <aside class="painel lateral" aria-labelledby="titulo-vaga" aria-live="polite">
+        <h2 class="titulo-vaga" id="titulo-vaga">Vaga sugerida</h2>
+        <div class="vaga-pintada" id="vaga-codigo"></div>
+        <p><strong id="vaga-setor"></strong></p>
+        <p class="dica" id="vaga-nota">Primeira vaga livre a partir da cancela.</p>
+
+        <button type="button" class="botao botao-largo" id="botao-alterar" style="margin-top: 1rem">Alterar vaga</button>
+        <div class="campo" id="caixa-escolher" hidden style="margin-top: 1rem">
+          <label for="escolher-vaga">Escolher outra vaga livre</label>
+          <select id="escolher-vaga"></select>
+          <p class="dica">Só aparecem vagas livres deste setor.</p>
+        </div>
+      </aside>
+    </form>
+
+    <!-- Resultado: entrada registrada -->
+    <section id="resultado" class="painel painel-destaque empilhado" hidden style="max-width: 44rem">
+      <h2 class="ok">Entrada registrada</h2>
+      <div id="resultado-placa"></div>
+      <dl class="dados dados-2" id="resultado-dados"></dl>
+      <div class="faixa-status" id="impressao" role="status"></div>
+      <div class="acoes">
+        <button type="button" class="botao botao-primario botao-grande" id="botao-nova">Registrar nova entrada</button>
+        <button type="button" class="botao botao-discreto" id="botao-cancelar-entrada">Cancelar esta entrada</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="dialogo-cancelar">
+    <h2 id="cancelar-titulo">Cancelar esta entrada?</h2>
+    <p id="cancelar-texto"></p>
+    <div class="acoes">
+      <button type="button" class="botao" id="manter-entrada">Manter a entrada</button>
+      <button type="button" class="botao botao-perigo" id="confirmar-cancelamento">Cancelar a entrada</button>
+    </div>
+  </dialog>
+
+  <script src="js/dados.js"></script>
+  <script src="js/regras.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/entrada.js"></script>
+</body>
+</html>

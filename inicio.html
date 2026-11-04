@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visão do turno | ParkFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&family=Barlow+Semi+Condensed:wght@600&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body data-perfil="operador">
+  <header class="barra">
+    <div class="barra-interno">
+      <a class="marca" href="inicio.html"><span class="marca-icone" aria-hidden="true">P</span>ParkFlow</a>
+      <nav class="menu" aria-label="Principal">
+        <a href="inicio.html" aria-current="page">Início</a>
+        <a href="entrada.html">Entrada <kbd>F2</kbd></a>
+        <a href="saida.html">Saída <kbd>F4</kbd></a>
+      </nav>
+      <span class="status-caixa"><span class="ponto-verde" aria-hidden="true"></span>Caixa aberto desde 06:00</span>
+      <div class="usuario">
+        <button type="button" class="usuario-botao" aria-expanded="false" aria-controls="menu-usuario">
+          <span class="avatar" aria-hidden="true">RA</span>
+          <span class="usuario-texto"><span class="usuario-nome">Rafael Antunes</span><span class="usuario-perfil">Operador de caixa</span></span>
+        </button>
+        <div class="usuario-menu" id="menu-usuario" hidden>
+          <p>Atalhos: <kbd>F2</kbd> entrada, <kbd>F4</kbd> saída</p>
+          <a href="index.html">Sair do ParkFlow</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <div class="cabecalho">
+      <div>
+        <h1>Visão do turno</h1>
+        <p id="data-turno"></p>
+      </div>
+      <div class="cabecalho-acoes">
+        <p class="atualizado" id="atualizado" aria-live="polite"></p>
+        <button type="button" class="botao botao-discreto botao-pequeno" id="botao-atualizar">Atualizar</button>
+        <a href="saida.html" class="botao">Registrar saída</a>
+        <a href="entrada.html" class="botao botao-primario">Registrar entrada</a>
+      </div>
+    </div>
+
+    <section class="indicadores" aria-label="Indicadores do turno">
+      <a href="entrada.html" class="indicador">
+        <span class="indicador-rotulo">Vagas livres</span>
+        <span class="indicador-valor" id="vagas-livres"></span>
+        <span class="indicador-detalhe" id="vagas-total"></span>
+        <ul class="setores" id="setores"></ul>
+      </a>
+      <a href="saida.html" class="indicador">
+        <span class="indicador-rotulo">Veículos no pátio</span>
+        <span class="indicador-valor" id="no-patio"></span>
+        <span class="indicador-detalhe" id="no-patio-detalhe"></span>
+      </a>
+      <div class="indicador">
+        <span class="indicador-rotulo">Recebido no turno</span>
+        <span class="indicador-valor" id="recebido"></span>
+        <span class="indicador-detalhe" id="recebido-detalhe"></span>
+      </div>
+    </section>
+
+    <section class="painel">
+      <h2 id="titulo-movimentacoes">Últimas movimentações</h2>
+      <div class="rolagem" role="region" aria-labelledby="titulo-movimentacoes" tabindex="0">
+        <table class="tabela">
+          <thead>
+            <tr><th>Horário</th><th>Placa</th><th>Movimento</th><th>Vaga</th><th class="numero">Valor</th></tr>
+          </thead>
+          <tbody id="movimentacoes"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/dados.js"></script>
+  <script src="js/regras.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>
